@@ -153,7 +153,7 @@ router.post("/create-payment", async (req, res) => {
             total: (req.body.total / 25000).toString(),
           },
 
-          description: "Payment online - Lazada",
+          description: "Payment online - Shopee",
         },
       ],
     };
