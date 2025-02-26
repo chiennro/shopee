@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.set('strictQuery', true).connect(`mongodb+srv://vldriftking2:binh1234@cluster0.juflc.mongodb.net/k21-duan?retryWrites=true&w=majority&appName=Cluster0`)
+mongoose.set('strictQuery', true).connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.juflc.mongodb.net/k21-duan?retryWrites=true&w=majority&appName=Cluster0`)
   .then(() => {
     console.log("Database connected");
   })

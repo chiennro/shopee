@@ -1,10 +1,9 @@
 const router = require("express").Router();
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 const CartModel = require("../models/cartModel");
 const OrderModel = require("../models/orderModel");
 const { checkLogin } = require("../middleWare/checkLogin");
 const CategoryModel = require("../models/category");
-const { default: axios } = require("axios");
 const paypal = require("paypal-rest-sdk");
 
 paypal.configure({
@@ -134,7 +133,7 @@ router.post("/create-payment", async (req, res) => {
       },
       redirect_urls: {
         return_url: process.env.BASE_URL + req.body.returnUrl,
-        cancel_url: "http://localhost:3000/cart",
+        cancel_url: process.env.BASE_URL + "/cart",
       },
       transactions: [
         {
