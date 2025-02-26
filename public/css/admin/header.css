@@ -1,0 +1,41 @@
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  background: orange !important;
+  height: 120px;
+  width: auto;
+}
+
+.avatar {
+  height: 40px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.the-a {
+  margin: 30px;
+  color: white;
+  height: 100%;
+}
+.the-a:hover {
+  cursor: pointer;
+  color: #0033a0;
+  border-bottom: #0033a0 solid 5px;
+}
+.doi-mau {
+  border: none;
+  background: orange;
+  height: 100%;
+  color: white;
+  font-size: 800;
+}
+.right-col,
+.left-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: orange;
+}
+.header-col:hover {
+  color: red;
+}

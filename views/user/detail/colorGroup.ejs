@@ -1,0 +1,14 @@
+<div class="select-name-img">
+  <% for (var i = 0 ; i < listData.length ; i++) { %>
+  <div class="img-sp">
+    <img
+      class="image-mau"
+      id="<%= listData[i]._id %>"
+      quantity="<%= listData[i].quantity %>"
+      data-color="<%= listData[i].color %>"
+      data-size="<%= listData[i].listSize == '' ? '' : listData[i].listSize %>"
+      src="<%= listData[i].illustration %>"
+    />
+  </div>
+  <% } %>
+</div>

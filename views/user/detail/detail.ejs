@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= listcode.name %></title>
+    <link rel="icon" href="/public/icon/lazada-logo.png" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/detail.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <%- include('../../components/header.ejs') %> <%-
+    include('../../components/loading.ejs') %>
+
+    <main id="loading">
+      <div class="container">
+        <div class="lienket">
+          <a href="/">Trang chủ</a>
+          <span> > </span>
+          <a
+            href="/category/<%= listcode.categoryID._id %>?page=1&sort=popularity"
+            ><%= listcode.categoryID.name %></a
+          >
+          <span> > </span>
+          <%= listcode.name.length > 60 ? listcode.name.replace(
+          listcode.name.slice(60, listcode.name.length ) , "...") :
+          listcode.name %>
+        </div>
+        <div class="block">
+          <div class="block-left"><%- include('./zoomImg.ejs') %></div>
+
+          <div class="block-center">
+            <div id="myresult" class="img-zoom-result"></div>
+            <div class="block-center-left">
+              <div class="name-sp" id="namesp">
+                <h1><%= listcode.name %></h1>
+              </div>
+
+              <div class="rate">
+                <div class="rate-star">
+                  <span
+                    ><%= listcode.stars == undefined ? '0' : listcode.stars %>/5
+                    <i class="fas fa-star"></i
+                  ></span>
+                  <a href="#evoluate"><%= listComment.length %> đánh giá</a>
+                </div>
+                <% if (user && user.favorite.includes(listcode._id)) { %>
+                <i
+                  onclick="showHeart('<%= listcode._id %>')"
+                  id="<%= listcode._id %>"
+                  style="color: red"
+                  class="fas fa-heart"
+                ></i>
+                <% } else { %>
+                <i
+                  onclick="showHeart('<%= listcode._id %>')"
+                  id="<%= listcode._id %>"
+                  class="fas fa-heart"
+                ></i>
+                <% } %>
+              </div>
+
+              <div class="gia-ban">
+                <div class="gia-ban-sale">
+                  <span
+                    ><span class="price"
+                      ><%= listcode.price.toLocaleString("vi") %></span
+                    >
+                    đ</span
+                  >
+                </div>
+              </div>
+
+              <% if (listData[0].color != '') { %>
+              <div class="select-title" alt="">
+                <p>Nhóm màu</p>
+                <div class="select-name select-color">
+                  <span>Vui lòng chọn</span>
+                  <%- include('./colorGroup.ejs'); %>
+                </div>
+              </div>
+              <% } %> <% if (listData[0].listSize != '') { %>
+              <div class="select-title" alt="">
+                <p>Kích thước</p>
+                <div class="select-name select-size">
+                  <span>Vui lòng chọn</span>
+                  <div class="size-sp">
+                    <% if (listData[0].color == '') { %> <% for (let i = 0 ; i <
+                    listData[0].listSize.split(',').length ; i++) { %>
+                    <div class="btn-sp">
+                      <button class="btn-size" id="" alt="">
+                        <%= listData[0].listSize.split(',')[i] %>
+                      </button>
+                    </div>
+                    <% } %> <% } %>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+
+              <div class="select-title">
+                <p>Số lượng</p>
+                <div class="select-name select-qty">
+                  <button id="down" onclick="down()">-</button>
+                  <input
+                    type="number"
+                    min="1"
+                    max="10"
+                    id="number-sp"
+                    value="1"
+                  />
+                  <button onclick="up()">+</button>
+                  <p>
+                    <%= listData[0].color == '' ? 'Còn ' + listData[0].quantity
+                    + ' sản phẩm' : '' %>
+                  </p>
+                </div>
+              </div>
+
+              <p class="toast-error"></p>
+              <div class="order">
+                <button
+                  class="mua-ngay"
+                  onclick="buyNow('<%= listData[0]._id %>')"
+                >
+                  Mua ngay
+                </button>
+                <button
+                  class="them-vao-cart"
+                  id="liveToastBtn"
+                  onclick="addCart('<%= listData[0]._id %>')"
+                >
+                  Thêm vào giỏ hàng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (listcode.linkYoutube && listcode.linkYoutube !== '') { %>
+        <div class="video">
+          <h2 class="video-title">Xem chi tiết về <%= listcode.name %></h2>
+          <div class="video-desc">
+            <iframe
+              width="956"
+              height="538"
+              src="https://www.youtube.com/embed/<%= listcode.linkYoutube %>"
+              title="Youtube"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <% } %>
+        <div class="evoluate" id="evoluate">
+          <h5 class="evoluate-title">
+            Đánh giá và nhận xét của <%= listcode.name %>
+          </h5>
+          <% if (listComment.length == 0) { %>
+          <div class="evoluate-empty">
+            <img src="/public/icon/no-comment.png" alt="" />
+            <h5>
+              Nội dung này hiện chưa có đánh giá. Hãy là người đầu tiên mua và
+              đánh giá sản phẩm của chúng tôi nào!
+            </h5>
+          </div>
+          <% } else { %> <%- include('./rated') %> <% } %>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../../components/footer.ejs') %>
+
+    <!-- Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-logo">
+          <i class="far fa-check-circle"></i>
+        </div>
+        <h3>Thêm sản phẩm vào giỏ hàng thành công</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/detail.js"></script>
+</html>

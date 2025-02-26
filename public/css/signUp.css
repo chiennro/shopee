@@ -1,0 +1,87 @@
+body {
+  background-color: var(--page-color);
+}
+
+.main {
+  width: 800px;
+  margin: 50px auto 0;
+}
+
+.main h2 {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.form {
+  background-color: white;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0 50px;
+}
+
+.form-register {
+  padding: 0 25px;
+  flex: 1;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  font-size: 14px;
+}
+
+.form-group input {
+  padding: 10px 35px 10px 10px;
+  width: 100%;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  margin: 8px 0 32px;
+  outline: none;
+}
+
+.form-message {
+  color: var(--error-color);
+  font-size: 13px;
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+}
+
+.form-submit {
+  padding: 0 25px 0 10px;
+  flex: 1;
+}
+
+.form-submit-btn {
+  margin: 8px 0 12px;
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 0;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  background-color: var(--btn-color);
+  color: white;
+}
+
+.form-submit-btn:hover {
+  background-color: var(--hover-btn-color);
+}
+
+.form-submit-login {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.form-submit-login a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.form-submit small {
+  font-size: 14px;
+  color: #555;
+}

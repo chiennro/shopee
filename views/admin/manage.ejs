@@ -1,0 +1,27 @@
+<% user.map(function(value){%>
+<div class="tablenguoi">
+  <div class="nguoi">
+    <div class="left">
+      <div class="nguoidungnut">
+        <img src="<%= value.avatar %>" alt="" class="imgthumbnail" />
+      </div>
+      <div class="nguoidung"><span>Name:</span> <%= value.username %></div>
+      <div class="nguoidungemail"><span>Email:</span> <%= value.email %></div>
+    </div>
+    <div class="right">
+      <div class="nguoidungrole"><span>Role:</span> <%= value.role %></div>
+      <div class="nguoidungnut">
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          onclick="edit('<%= value.id %>')"
+          class="edit"
+        >
+          Edit Role
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<%}) %>

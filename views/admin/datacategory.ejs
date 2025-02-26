@@ -1,0 +1,29 @@
+<% listcategory.map(function(value,i){%>
+<div class="bangday">
+  <div class="ten">
+    <div><h5><%= value.name %></h5></div>
+    <div class="update-delete">
+      <button
+        type="button"
+        onclick="update('<%= JSON.stringify(value) %>')"
+        id="<%= value._id %>"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="butday"
+      >
+        ...
+      </button>
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+        onclick="xoa('<%= value._id %>')"
+        class="butday"
+      >
+        X
+      </button>
+    </div>
+  </div>
+  <td><img src="<%= value.thumbnail %>" alt="" class="imgthumbnail" /></td>
+</div>
+<% }) %>

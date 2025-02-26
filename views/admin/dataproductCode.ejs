@@ -1,0 +1,40 @@
+<div class="data-day">
+  <% listproductCode.map(function(value){%>
+  <div class="the-por">
+    <div class="sua-xoa">
+      <div>
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          onclick="update('<%= value.id %>')"
+          class="sua"
+        >
+          ...
+        </button>
+      </div>
+      <div>
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          onclick="xoa('<%= value.id %>')"
+          class="xoa"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    <a href="/product/<%= value._id %>">
+      <div>
+        <img src="<%= value.thumbnail %>" alt="" id="anh-code" />
+      </div>
+      <button class="buttt"><%= value.code %></button>
+      <button class="buttt"><%= value.name %></button>
+      <button class="buttt">
+        Price: <span class="gia"><%= value.price %> VNĐ</span>
+      </button>
+    </a>
+  </div>
+  <%})%>
+</div>

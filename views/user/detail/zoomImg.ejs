@@ -1,0 +1,22 @@
+<div class="img1">
+  <img
+    src="<%= listData[0].illustration %>"
+    id="myimage"
+    class="bigImg"
+    alt="ví nam"
+  />
+</div>
+
+<div class="img-line">
+  <button class="back" onclick="back()">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <div class="img-next-slick">
+    <% for (var i = 0 ; i < listData.length ; i++) { %>
+    <img class="smallImg" id="<%= i %>" src="<%= listData[i].illustration %>" />
+    <% } %>
+  </div>
+  <button class="next" onclick="next('<%= listData.length %>')">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+</div>

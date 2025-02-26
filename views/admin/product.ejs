@@ -1,0 +1,39 @@
+<div class="the-product">
+  <% listproduct.map(function(value){%>
+  <div class="the-aaa">
+    <div class="product">
+      <div class="end">
+        <div>
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+            class="sua-xoa-day"
+            onclick="up('<%= JSON.stringify(value) %>')"
+          >
+            <i class="fas fa-wrench"></i>
+          </button>
+        </div>
+        <div>
+          <button class="xoa-day" onclick="xoaproduct('<%= value.id %>')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="the-listanh">
+        <img src="<%= value.illustration %>" alt="" class="imgthumbnail" />
+      </div>
+      <div class="bottom">
+        <div><span class="khac-mau">Màu sắc :</span> <%= value.color %></div>
+        <div>
+          <span class="khac-mau">Kích thước :</span> <%= value.listSize != '' ?
+          value.listSize : 'Không có' %>
+        </div>
+        <div>
+          <span class="khac-mau">Số lượng :</span> <%= value.quantity %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%}) %>
+</div>

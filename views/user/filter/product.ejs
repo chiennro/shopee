@@ -1,0 +1,32 @@
+<ul class="product-list" >
+  <% listSearch.map((product, i) => { %>
+    <% if (i < 16) { %>
+      <li class="product-item col-3">
+        <a class="product-link" <%= product.hasData ? 'href=/product/detail/' + product._id : null  %>>
+          <img src="<%= product.thumbnail %>" alt="" />
+          <div class="product-content">
+            <p class="product-name"><%= product.name %></p>
+            <p class="product-price">
+              <span><%= product.price.toLocaleString("vi") %> </span>
+              <span>₫</span>
+            </p>
+          </div>
+          <div class="product-address">
+            <% if (product.hasData) { %>
+              <% if (user && user.favorite.includes(product._id)) { %>
+                <i class="fas fa-heart" style="color: red;"></i>
+              <% } else { %>
+                <i class="fas fa-heart" ></i>
+              <% } %>
+            <% } else { %>
+              <p>Hết hàng</p>
+            <% } %>
+            <% if (product.stars != undefined) { %>
+              <p class="product-address-rate"><%= product.stars %> <i class="fas fa-star" style="color: var(--star-color); margin: 0;"></i></p>
+            <% } %>
+          </div>
+        </a>
+      </li>
+    <% } %>
+  <% }) %>
+</ul>

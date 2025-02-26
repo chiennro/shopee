@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazada VN</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/signIn.css" />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <div class="main">
+      <h2>Chào mừng đến với Lazada</h2>
+      <div class="form">
+        <div class="form-group">
+          <label>Email*</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Vui lòng nhập Email của bạn"
+          />
+          <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+          <label>Mật khẩu*</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Vui lòng nhập mật khẩu của bạn"
+          />
+          <span class="form-message"></span>
+        </div>
+        <button class="form-submit-btn" onclick="signIn()">ĐĂNG NHẬP</button>
+        <p class="form-support"><a href="">Quên mật khẩu?</a></p>
+        <p class="form-register">
+          Thành viên mới . <a href="/register">Đăng kí </a> tại đây
+        </p>
+      </div>
+    </div>
+    <%- include('../../components/footer') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/signIn.js"></script>
+</html>

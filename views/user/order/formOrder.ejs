@@ -1,0 +1,228 @@
+<div class="container_left">
+  <div class="leftContainer_1000">
+    <div class="mod-guest-register">
+      <div class="mod-guest-register-hd">Thông tin giao hàng</div>
+
+      <div class="mod-address-form">
+        <div class="mod-address-form-bd">
+          <div class="mod-address-form-left">
+            <div class="mod-input mod-input-name">
+              <label>Họ tên</label
+              ><input
+                class="hoten"
+                onkeyup="hoten()"
+                type="text"
+                placeholder="Họ Tên"
+                data-meta="Field"
+                value=""
+              /><b></b><span></span>
+            </div>
+            <div class="mod-input mod-input-phone">
+              <label>Số điện thoại (VN)</label>
+              <input
+                class="phone"
+                onkeyup="phone()"
+                type="number"
+                placeholder="Vui lòng nhập số điện thoại của bạn"
+                data-meta="Field"
+                value=""
+                inputmode="numeric"
+                pattern="[0-9]*"
+                data-spm-anchor-id="a2o4n.shipping.0.i2.4b61705b5xcJn8"
+              /><b></b><span></span>
+            </div>
+          </div>
+          <div class="mod-address-form-right">
+            <div class="mod-select tinh">
+              <label>Tỉnh/ Thành phố</label>
+              <div>
+                <select
+                  class="adress_tinh enabled"
+                  alt=""
+                  onclick="chonTinh(this)"
+                >
+                  <option value="">Tỉnh / Thành phố</option>
+                </select>
+              </div>
+              <b></b><span></span>
+            </div>
+            <div class="mod-select quan">
+              <label>Quận/ Huyện</label>
+              <div>
+                <select
+                  class="adress_quan disable"
+                  alt=""
+                  code=""
+                  onclick="chonQuan(this)"
+                >
+                  <option value="">Quận / Huyện</option>
+                </select>
+              </div>
+              <b></b><span></span>
+            </div>
+            <div class="mod-select phuong">
+              <label>Phường/ Xã</label>
+              <div>
+                <select
+                  class="adress_phuong disable"
+                  alt=""
+                  onclick="chonPhuong(this)"
+                >
+                  <option value="">Phường/ Xã</option>
+                </select>
+              </div>
+              <b></b>
+            </div>
+            <div class="mod-input mod-input-adress">
+              <label>Địa chỉ chi tiết</label
+              ><input
+                class="diachi"
+                onkeyup="diachi()"
+                type="text"
+                placeholder="Vui lòng nhập địa chỉ của bạn"
+                data-meta="Field"
+                value=""
+                data-spm-anchor-id="a2o4n.shipping.0.i4.4b61705b5xcJn8"
+              /><b></b><span></span>
+            </div>
+            <div class="mod-address-tag">
+              <p class="mod-address-tag-title">
+                Lựa chọn tên cho địa chỉ thường dùng:
+              </p>
+              <div class="mod-address-tag-content">
+                <div
+                  class="mod-address-tag-item mod-address-tag-work"
+                  onclick="vanphong()"
+                >
+                  <span class="mod-address-tag-icon-1">
+                    <i class="fa-solid fa-briefcase"></i> </span
+                  ><span class="vp">VĂN PHÒNG</span>
+                </div>
+                <div class="mod-address-tag-item" onclick="nharieng()">
+                  <span class="mod-address-tag-icon-2"
+                    ><i class="fa-solid fa-house"></i></span
+                  ><span class="nr">NHÀ RIÊNG</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mod-address">
+          <button class="btn-luu-adress" id="liveToastBtn" onclick="saveInfo()">
+            LƯU
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./listOrder.ejs'); %>
+  </div>
+</div>
+
+<div class="container_right">
+  <div class="container_right_con">
+    <div class="payment-card-container">
+      <div class="payment-card-header-wrapper">
+        <span class="payment-card-header-title">
+          Chọn phương thức thanh toán
+        </span>
+      </div>
+      <div class="card-list-wrapper">
+        <div class="card-container" id="payment-cash">
+          <div>
+            <div class="card-main-content">
+              <div class="card-main-content-text-container">
+                <img
+                  class="card-icon"
+                  src="https://laz-img-cdn.alicdn.com/tfs/TB1ZP8kM1T2gK0jSZFvXXXnFXXa-96-96.png"
+                />
+                <p class="card-title">Thanh toán khi nhận hàng</p>
+              </div>
+              <span class="checked-icon"
+                ><i class="fa-solid fa-circle-check"></i
+              ></span>
+            </div>
+            <div class="card-footer">
+              <p class="card-complex">Thanh toán khi nhận hàng</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-container" id="payment-online">
+          <div>
+            <div class="card-main-content">
+              <div class="card-main-content-text-container">
+                <img
+                  class="card-icon"
+                  src="https://banner2.cleanpng.com/20180418/xie/avfk8kkuq.webp"
+                />
+                <p class="card-title">Thanh toán Online</p>
+              </div>
+              <span class="checked-icon"
+                ><i class="fa-solid fa-circle-check"></i
+              ></span>
+            </div>
+            <div class="card-footer">
+              <p class="card-complex">Thanh toán qua Paypal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="additional-detail" class="additional-detail-wrapper"></div>
+    <div class="summary-section">
+      <div class="summary-section-heading">Thông tin đơn hàng *</div>
+      <div class="summary-section-content">
+        <div class="checkout-summary">
+          <div class="checkout-summary-row">
+            <div class="checkout-summary-main">
+              <div class="checkout-summary-label">
+                Tạm tính (<span><%= sumCart %></span> Sản phẩm)
+              </div>
+              <div class="checkout-summary-value">
+                <span class="checkout-summary-noline-value">
+                  <span class="bill" data-total="<%= totalPrice %>"
+                    ><%= totalPrice.toLocaleString("vi") %>
+                  </span>
+                  ₫
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="checkout-summary-row">
+            <div class="checkout-summary-main">
+              <div class="checkout-summary-label">Phí giao hàng</div>
+              <div class="checkout-summary-value">
+                <span class="checkout-summary-noline-value"
+                  ><span class="price-ship">20.000</span> ₫</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="checkout-summary-row">
+            <div class="checkout-summary-main">
+              <div class="checkout-summary-label">Khuyến mãi</div>
+              <div class="checkout-summary-value">
+                <span class="checkout-summary-noline-value">0 ₫</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="summary-section-solid"></div>
+    </div>
+    <div class="checkout-order-total">
+      <div class="checkout-order-total-row">
+        <div class="checkout-order-total-title">Tổng cộng:</div>
+        <div class="checkout-order-total-fee">
+          <span class="bill-total"
+            ><%= (totalPrice + 20000).toLocaleString("vi") %></span
+          >
+          ₫
+        </div>
+      </div>
+      <button class="dat-hang hide-btn" id="<%= cartID %>" turn-number="0">
+        ĐẶT HÀNG
+      </button>
+    </div>
+  </div>
+</div>

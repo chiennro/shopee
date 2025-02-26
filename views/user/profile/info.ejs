@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lí tài khoản</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/profile.css" />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <main class="main">
+      <div class="content">
+        <%- include('./general') %>
+        <div class="content-info">
+          <h3>Thông tin cá nhân</h3>
+          <%- include('../../components/loading') %>
+          <div class="content-info-container" id="loading">
+            <div class="content-info-detail">
+              <div class="content-info-detail-avatar">
+                <img src="<%= user.avatar %>" alt="" />
+                <p><%= user.username %></p>
+              </div>
+              <div class="content-info-detail-user">
+                <div class="content-info-detail-title">
+                  <h5>Email</h5>
+                  <p><%= user.email %></p>
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Địa chỉ</h5>
+                  <% if (user.address !== '') { %>
+                  <p><%= user.address %></p>
+                  <% } else { %>
+                  <p class="empty">Vui lòng nhập địa chỉ</p>
+                  <% } %>
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Ngày sinh</h5>
+                  <% if (user.date) { %>
+                  <p><%= user.date %></p>
+                  <% } else { %>
+                  <p class="empty">Vui lòng nhập ngày sinh</p>
+                  <% } %>
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Giới tính</h5>
+                  <% if (user.gender) { %>
+                  <p><%= user.gender %></p>
+                  <% } else { %>
+                  <p class="empty">Vui lòng nhập giới tính</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="content-info-detail-edit">
+              <button
+                id="editInfo"
+                onclick="window.location.href = '/profile/info/edit'"
+              >
+                sửa thông tin
+              </button>
+              <button
+                onclick="window.location.href = '/profile/info/change-password'"
+              >
+                thay đổi mật khẩu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../components/footer') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/profile.js"></script>
+</html>

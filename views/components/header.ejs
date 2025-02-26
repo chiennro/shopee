@@ -1,0 +1,60 @@
+<header>
+  <ul class="heading-list">
+    <li><a href="" class="heading-link">chăm sóc khách hàng</a></li>
+    <li><a href="" class="heading-link">kiểm tra đơn hàng</a></li>
+    <% if (user) { %>
+    <li>
+      <a href="/profile/info" class="heading-link"
+        >Tài khoản <%= user.username %></a
+      >
+    </li>
+    <li>
+      <a class="heading-link" onclick="logout()">Đăng xuất</a>
+    </li>
+    <% } else { %>
+    <li><a href="/login" class="heading-link">đăng nhập</a></li>
+    <li><a href="/register" class="heading-link">đăng kí</a></li>
+    <% } %>
+  </ul>
+  <div class="header">
+    <div class="header-logo">
+      <a href="/">
+        <img src="/public/icon/lazada-icon.png" alt="" />
+      </a>
+    </div>
+    <div class="header-search">
+      <div class="header-search-input">
+        <input
+          type="text"
+          name=""
+          id="search"
+          value="<%= ten == '' ? '' : ten %>"
+          placeholder="Tìm kiếm"
+        />
+        <button onclick="searchBtn()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="header-search-cart">
+        <a href="/cart"><img src="/public/icon/cart-logo.png" alt="" /></a>
+      </div>
+    </div>
+
+    <div class="header-category">
+      Danh mục <i class="fas fa-angle-down"></i>
+      <ul class="header-category-list">
+        <% listcategory.map(category => { %>
+        <li>
+          <a
+            href="/category/<%= category._id %>?page=1&sort=popularity"
+            class="header-category-link"
+            title="<%= category.name %>"
+            ><%= category.name %></a
+          >
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</header>
+<div class="height-empty"></div>

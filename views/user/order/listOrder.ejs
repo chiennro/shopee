@@ -1,0 +1,47 @@
+<% listSelect.map((product, i) => { %>
+<div class="checkout-item">
+  <div class="cart-item-left">
+    <img src="<%= product.productID.illustration %>" alt="" />
+    <div class="content">
+      <a
+        class="content-link"
+        href="/product/detail/<%= product.productID.productCode._id %>"
+      >
+        <p class="content-name"><%= product.productID.productCode.name %></p>
+        <p class="color-size">
+          <% if (product.productID.color != '' && product.size != '') { %> Nhóm
+          màu : <%= product.productID.color %> , Kích thước : <%= product.size
+          %> <% } else { %>
+          <span>
+            <%= product.productID.color != '' ? 'Nhóm màu : ' +
+            product.productID.color : '' %>
+          </span>
+          <span>
+            <%= product.size != '' ? 'Kích thước : ' + product.size : '' %>
+          </span>
+          <% } %>
+        </p>
+      </a>
+    </div>
+  </div>
+  <div class="cart-item-middle">
+    <p class="current-price">
+      <span
+        ><%= product.productID.productCode.price.toLocaleString("vi") %></span
+      >
+      ₫
+    </p>
+    <div class="operations">
+      <i
+        class="fa-solid fa-trash-can"
+        onclick="xoa('<%= product.productID.productCode.price * product.quantity %>' ,'<%= i %>',this)"
+      ></i>
+    </div>
+  </div>
+  <div class="cart-item-right">
+    <div class="so-luong-sp">
+      Số lượng: <span><%= product.quantity %></span>
+    </div>
+  </div>
+</div>
+<% }) %>

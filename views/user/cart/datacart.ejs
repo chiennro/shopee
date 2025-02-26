@@ -1,0 +1,60 @@
+<% listCart.map((product, i) => { %>
+<div class="checkout-item">
+  <div class="cart-item-left">
+    <input type="checkbox" class="cart-item-checkbox" data-price="<%=
+    product.productID.productCode.price %>" id="<%= product.productID._id %>"
+    data-index="<%= i %>" <%= product.select ? "checked" : "" %>/>
+    <img src="<%= product.productID.illustration %>" alt="" />
+    <div class="content">
+      <a
+        class="content-link"
+        href="/product/detail/<%= product.productID.productCode._id %>"
+      >
+        <p class="content-name"><%= product.productID.productCode.name %></p>
+        <p class="color-size">
+          <% if (product.productID.color != '' && product.size != '') { %> Nhóm
+          màu : <%= product.productID.color %> , Kích thước : <%= product.size
+          %> <% } else { %>
+          <span>
+            <%= product.productID.color != '' ? 'Nhóm màu : ' +
+            product.productID.color : '' %>
+          </span>
+          <span>
+            <%= product.size != '' ? 'Kích thước : ' + product.size : '' %>
+          </span>
+          <% } %>
+        </p>
+      </a>
+    </div>
+  </div>
+  <div class="cart-item-middle">
+    <p class="current-price">
+      <span
+        ><%= product.productID.productCode.price.toLocaleString("vi") %></span
+      >
+      ₫
+    </p>
+    <div class="operations">
+      <i class="fa-solid fa-trash-can" onclick="xoa('<%= i %>')"></i>
+    </div>
+  </div>
+  <div class="cart-item-right">
+    <div class="so-luong-sp">
+      <div>
+        <button class="down" data-index="<%= i %>">
+          <i class="fas fa-minus"></i>
+        </button>
+        <input
+          type="number"
+          class="quantity-product"
+          value="<%= product.quantity %>"
+          min="1"
+        />
+        <button class="up" data-index="<%= i %>">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<% }) %>

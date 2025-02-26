@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt hàng thành công</title>
+    <link rel="icon" href="/public/icon/lazada-logo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/order.css" />
+  </head>
+  <body>
+    <%- include('../../components/header.ejs') %> <%-
+    include('../../components/loading') %>
+
+    <main id="loading">
+      <div class="container-success">
+        <img src="/public/icon/completed-task.png" alt="" />
+        <h5>
+          Chúc mừng bạn đã <span>Đặt hàng thành công</span>. Đơn hàng của bạn sẽ
+          được giao trong 7 ngày tới.
+        </h5>
+        <a href="/profile/order">
+          <button class="container-success-view">xem thông tin đơn hàng</button>
+        </a>
+      </div>
+    </main>
+
+    <%- include('../../components/footer.ejs') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+</html>

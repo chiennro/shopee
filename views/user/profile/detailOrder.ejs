@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết đơn hàng</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/profile.css" />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <main>
+      <div class="content">
+        <%- include('./general') %>
+        <div class="content-info">
+          <h3>Đơn hàng của tôi <%= detailOrder.time %></h3>
+          <% detailOrder.productList.forEach((product, i) => { %>
+          <div class="content-order-detail">
+            <div class="content-order-detail-img">
+              <img src="<%= product.productID.illustration %>" alt="" />
+            </div>
+            <div class="content-order-detail-name">
+              <p><%= product.productID.productCode.name %></p>
+              <p class="color-size">
+                <% if (product.productID.color != '' && product.size != '') { %>
+                Nhóm màu : <%= product.productID.color %> , Kích thước : <%=
+                product.size %> <% } else { %>
+                <span>
+                  <%= product.productID.color != '' ? 'Nhóm màu : ' +
+                  product.productID.color : '' %>
+                </span>
+                <span>
+                  <%= product.size != '' ? 'Kích thước : ' + product.size : ''
+                  %>
+                </span>
+                <% } %>
+              </p>
+            </div>
+            <p class="content-order-detail-price">
+              ₫ <%= product.productID.productCode.price.toLocaleString("vi") %>
+            </p>
+            <p class="content-order-detail-quantity">
+              Qty : <%= product.quantity %>
+            </p>
+            <% if (detailOrder.status == 'done') { %>
+            <div class="content-order-detail-rate">
+              <% if (product.rated) { %>
+              <a href="/product/detail/<%= product.productID.productCode._id %>"
+                >Xem đánh giá</a
+              >
+              <% } else { %>
+              <button
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+                onclick="getDataToModal('<%= product.productID.productCode._id %>', '<%= product.productID.productCode.name %>',this )"
+                index="<%= i %>"
+              >
+                Đánh giá
+              </button>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+          <% }) %>
+          <div class="content-order-info">
+            <div class="content-order-info-address">
+              <h5><%= detailOrder.name %></h5>
+              <p>
+                <span
+                  class="content-order-info-<%= detailOrder.type == 'NHÀ RIÊNG' ? 'home' : 'working' %>"
+                  ><%= detailOrder.type %></span
+                >
+                <%= detailOrder.address %>
+              </p>
+              <p><%= detailOrder.phone %></p>
+            </div>
+            <div class="content-order-info-total">
+              <h3>Tổng cộng</h3>
+              <p>
+                <span
+                  >Tổng tiền (<%= detailOrder.productList.length %> sản
+                  phẩm)</span
+                >
+                <span
+                  ><%= (detailOrder.total - 20000).toLocaleString("vi") %>
+                  ₫</span
+                >
+              </p>
+              <p>
+                <span>Phí giao hàng</span>
+                <span>20.000 ₫</span>
+              </p>
+              <p class="total-price">
+                <span>Tổng cộng</span>
+                <span><%= detailOrder.total.toLocaleString("vi") %> ₫</span>
+              </p>
+              <div class="cancel-order">
+                <% if (detailOrder.status == 'pending') { %>
+                <button data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Hủy đơn hàng
+                </button>
+                <% } else if (detailOrder.status == 'cancel') { %>
+                <span style="color: red">Bạn đã hủy đơn hàng này</span>
+                <% } else { %>
+                <span style="color: var(--success-color)"
+                  >Nhận hàng thành công</span
+                >
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../components/footer') %>
+
+    <!-- Modal Confirm -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h5>Bạn có chắc chắn hủy đơn hàng này không ?</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Hủy bỏ
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="cancelOrder('<%= detailOrder._id %>')"
+            >
+              Chấp nhận
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Rated -->
+    <%- include('./modalRated.ejs') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/profile.js"></script>
+</html>

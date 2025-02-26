@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin cá nhân</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/profile.css" />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <main class="main">
+      <div class="content">
+        <%- include('./general') %>
+        <div class="content-info">
+          <h3>Chỉnh sửa</h3>
+          <div class="content-info-container">
+            <div class="content-info-detail">
+              <div class="content-info-detail-avatar">
+                <h4>Nhấp vào ảnh để thay đổi</h4>
+                <form enctype="multipart/form-data">
+                  <input
+                    type="file"
+                    name="avatar"
+                    id="upload-avatar"
+                    style="display: none"
+                  />
+                  <img
+                    src="<%= user.avatar %>"
+                    id="avatar-edit"
+                    alt=""
+                    style="cursor: pointer"
+                    onclick="importData()"
+                  />
+                </form>
+                <div class="content-info-detail-name">
+                  <p><%= user.username %></p>
+                  <i
+                    class="fas fa-edit"
+                    onclick="editName()"
+                    style="cursor: pointer"
+                  ></i>
+                </div>
+                <div class="error-edit">
+                  <input
+                    type="text"
+                    placeholder="Vui lòng điền username"
+                    id="edit-username"
+                    name="username"
+                    style="text-align: center"
+                    value="<%= user.username %>"
+                  />
+                  <p
+                    class="error-text"
+                    style="font-size: 13px; font-weight: 500"
+                  ></p>
+                </div>
+              </div>
+              <div class="content-info-detail-user">
+                <div class="content-info-detail-title">
+                  <h5>Địa chỉ Email</h5>
+                  <p><%= user.email %></p>
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Địa chỉ</h5>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    placeholder="Nhập địa chỉ"
+                    value="<%= user.address %>"
+                  />
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Ngày sinh</h5>
+                  <div class="birthday">
+                    <% if (!user.date) { %>
+                    <select name="" id="day">
+                      <% for (var i = 1 ; i <= 31 ; i++) { %>
+                      <option value="<%= i %>"><%= i %></option>
+                      <% } %>
+                    </select>
+                    <select name="" id="month">
+                      <% for (var i = 1 ; i <= 12 ; i++) { %>
+                      <option value="Tháng <%= i %>">Tháng <%= i %></option>
+                      <%} %>
+                    </select>
+                    <select name="" id="year">
+                      <% for (var i = 2022 ; i >= 1970 ; i--) { %>
+                      <option value="<%= i %>"><%= i %></option>
+                      <%} %>
+                    </select>
+                    <% } else { %>
+                    <select id="day" class="">
+                      <option value="<%= user.date.split('/')[0] %>">
+                        <%= user.date.split("/")[0] %>
+                      </option>
+                      <% for (var i = 1 ; i <= 31 ; i++) { %> <% if (i !=
+                      user.date.split("/")[0]) { %>
+                      <option name="day" value="<%= i %>"><%= i %></option>
+                      <%} %> <%} %>
+                    </select>
+                    <select id="month" class="">
+                      <option value="Tháng <%= user.date.split('/')[1] %>">
+                        Tháng <%= user.date.split("/")[1] %>
+                      </option>
+                      <% for (var i = 1 ; i <= 12 ; i++) { %> <% if (i !=
+                      user.date.split("/")[1]) { %>
+                      <option name="month" value="Tháng <%= i %>">
+                        Tháng <%= i %>
+                      </option>
+                      <%} %> <%} %>
+                    </select>
+                    <select id="year" class="">
+                      <option value="<%= user.date.split('/')[2] %>">
+                        <%= user.date.split("/")[2] %>
+                      </option>
+                      <% for (var i = 2022 ; i >= 1970 ; i--) { %> <% if (i !=
+                      user.date.split("/")[2]) { %>
+                      <option name="year" value="<%= i %>"><%= i %></option>
+                      <%} %> <%} %>
+                    </select>
+                    <% } %>
+                  </div>
+                </div>
+                <div class="content-info-detail-title">
+                  <h5>Giới tính</h5>
+                  <% if (user.gender) { %>
+                  <p><%= user.gender %></p>
+                  <% } else { %>
+                  <select id="gender">
+                    <option name="gender" value="Nam">Nam</option>
+                    <option name="gender" value="Nữ">Nữ</option>
+                  </select>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <div class="content-info-detail-edit">
+              <button
+                onclick="changeInfo()"
+                style="background-color: var(--btn-color)"
+              >
+                Lưu thay đổi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../components/footer') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/profile.js"></script>
+</html>

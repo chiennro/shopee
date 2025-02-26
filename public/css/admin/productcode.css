@@ -1,0 +1,262 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  box-sizing: border-box;
+}
+#header-code {
+  border-bottom: #0033a0 solid 5px;
+}
+.change {
+  padding: 20px;
+  text-align: center;
+  width: 500px;
+  margin: auto;
+  border: 1px solid orange;
+  box-shadow: 0 0 5px orange;
+  border-radius: 20px;
+}
+.change h4 {
+  padding: 10px;
+  border-bottom: 1px solid orange;
+  color: orange;
+  font-weight: 600;
+  font-size: 30px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+#headerproduct {
+  border-bottom: #0033a0 solid 5px;
+}
+#headeruser,
+#headercategory {
+  border: none !important;
+}
+.ab {
+  border: none;
+}
+#bangadd {
+  text-align: center;
+}
+.nhom1,
+.nhom2 {
+  display: flex;
+}
+#code,
+#name,
+#linkYoutube {
+  border: none;
+  border-bottom: 1px solid orange;
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+}
+.note1 {
+  margin-right: 25px;
+}
+#change {
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center;
+  border: none;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+#add {
+  width: 100%;
+  color: white;
+  background: orange;
+  border: 1px solid orange;
+  box-shadow: 0 0 5px orange;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+.note1,
+.note5,
+.note3,
+.note2,
+.note4 {
+  color: red;
+}
+.anh,
+#changeimg {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  object-position: center;
+}
+
+#category::-webkit-scrollbar {
+  width: 15px;
+  height: 10px; /* Chiều rộng vùng chứa scrollbar */
+}
+#category::-webkit-scrollbar-track {
+  background: #ccc; /* Màu nền ngoài của thanh scrollbar */
+}
+#category::-webkit-scrollbar-thumb {
+  background-color: #ffa500; /* Màu của thanh cuộn (scroll thumb) */
+  border-radius: 15px; /* Bo góc scroll thumb */
+  border: 2px solid #ccc; /* Không hỗ trợ padding, margin, transition nên dùng viền cùng màu nên để padding scroll thumb */
+}
+#category::-webkit-scrollbar-thumb:hover {
+  background-color: #ff8000; /* Hiệu ứng di chuột đổi màu*/
+}
+#category {
+  /*cho Firefox*/
+  scrollbar-width: thin; /* "auto" hoặc "thin" */
+  scrollbar-color: orange #ccc; /* scroll thumb and track */
+  padding: 0 8px;
+  cursor: pointer;
+}
+.divcategory {
+  height: 50px;
+}
+
+.back,
+.next {
+  border: none;
+  color: #0033a0;
+  background: white;
+  font-size: 20px;
+  font-weight: 1000;
+  margin: 5px;
+}
+
+.Btn {
+  border: none;
+  color: #0033a0;
+  background: white;
+  border-bottom: 2px solid #0033a0;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 1000;
+  border-radius: 15px;
+}
+
+.data-day {
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.the-por {
+  width: 15%;
+  border: 1px solid orange;
+  border-radius: 15px;
+  margin: 10px;
+  text-align: center;
+}
+.the-por:hover {
+  border: 1px solid #0033a0;
+  box-shadow: 0 14px 14px 0 rgba(0, 0, 0, 0.35);
+}
+#anh-code {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: cover;
+}
+.sua-xoa {
+  display: flex;
+  justify-content: end;
+}
+.sua,
+.xoa {
+  border: 1px solid red;
+  background: white;
+  margin: 5px;
+  color: red;
+  font-weight: 800;
+  border-radius: 10px;
+}
+.sua:hover,
+.xoa:hover {
+  background: red;
+  color: white;
+}
+.buttt {
+  background: white;
+  border: none;
+  font-weight: 800;
+}
+.gia {
+  color: #ff8000;
+}
+.trang-day {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+#yes-no {
+  width: 80px;
+  height: 50px;
+  border-radius: 15px;
+  opacity: 0.7;
+  background: orange;
+  border: none;
+}
+#yes-no:hover {
+  opacity: 5;
+}
+#body-yes-no {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#conten-header {
+  color: orange;
+  border-bottom: 2px solid orange;
+}
+
+#exampleModalLabel-a {
+  font-size: 30px;
+  font-weight: 800;
+  position: relative;
+  left: 90px;
+}
+.it {
+  display: flex;
+  height: 60px;
+  margin: 10px 10px;
+  text-align: center;
+}
+.name,
+.code,
+.linkYoutube {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid orange;
+}
+.price {
+  width: 40%;
+  border-bottom: 1px solid orange;
+}
+#changeimg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: cover;
+}
+.anh-chien {
+  text-align: center;
+}
+#footer-chien {
+  display: flex;
+  justify-content: space-between;
+}
+#close {
+  background: red;
+  opacity: 0.7;
+  border-radius: 15px;
+}
+#update-day {
+  background: orange;
+  opacity: 0.7;
+  border-radius: 15px;
+}
+#update-day:hover,
+#close:hover {
+  opacity: 5;
+}

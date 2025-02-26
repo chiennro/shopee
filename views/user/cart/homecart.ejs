@@ -1,0 +1,51 @@
+<div class="leftcontainer">
+  <div class="list-header-man">
+    <div class="checkbox-wrap">
+      <input
+        type="checkbox"
+        alt="false"
+        class="checkall"
+        onclick="checkboxAll()"
+      />
+      <label>Chọn tất cả (<%= sumCart %> sản phẩm)</label>
+    </div>
+    <div
+      class="list-header-operations"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      <span><i class="fa-solid fa-trash-can"></i>Xóa tất cả</span>
+    </div>
+  </div>
+
+  <%- include('./datacart.ejs'); %>
+</div>
+
+<div class="rightcontainer">
+  <div class="summary-section">
+    <div class="summary-section-heading">Thông tin đơn hàng</div>
+    <div class="checkout-summary">
+      <div class="checkout-summary-rows">
+        <div class="checkout-summary-label">
+          Tạm tính (<span>0</span> sản phẩm)
+        </div>
+        <span class="checkout-value">0 ₫ </span>
+      </div>
+      <div class="checkout-order-total-row">
+        <div class="checkout-order-total">Tổng cộng</div>
+        <div class="checkout-order-value">
+          <span>0 ₫</span>
+        </div>
+      </div>
+      <div class="checkout-small">
+        <small>Đã bao gồm VAT (nếu có)</small>
+      </div>
+      <button
+        class="order-group"
+        onclick="window.location.href='/order/<%= cartID %>?result=checkout'"
+      >
+        XÁC NHẬN GIỎ HÀNG (<span>0</span>)
+      </button>
+    </div>
+  </div>
+</div>

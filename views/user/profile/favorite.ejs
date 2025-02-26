@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sản phẩm yêu thích</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <main class="main">
+      <div class="content">
+        <%- include('./general') %>
+        <div class="content-info">
+          <h3>Sản phẩm yêu thích</h3>
+          <%- include('../../components/loading') %>
+          <div class="content-info-container" id="loading">
+            <% if (listCode.length > 0) { %>
+            <ul class="content-favorite-list">
+              <% listCode.forEach(product => { %>
+              <li class="content-favorite-item">
+                <a
+                  href="/product/detail/<%= product._id %>"
+                  class="content-favorite-link"
+                >
+                  <img src="<%= product.thumbnail %>" alt="" />
+                  <p><%= product.name %></p>
+                </a>
+                <div class="content-favorite-price">
+                  <p>₫ <%= product.price.toLocaleString() %></p>
+                  <i
+                    class="fas fa-trash-alt"
+                    onclick="removeHeart('<%= product._id %>')"
+                  ></i>
+                </div>
+              </li>
+              <% }) %>
+            </ul>
+            <% } else { %>
+            <div class="order-empty">
+              <img src="/public/icon/no-task.png" alt="" />
+              <h5>Bạn chưa có sản phẩm yêu thích nào</h5>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../components/footer') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/profile.js"></script>
+</html>

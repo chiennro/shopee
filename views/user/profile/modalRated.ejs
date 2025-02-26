@@ -1,0 +1,52 @@
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header modal-rated-header">
+        <h5 class="modal-title">Đánh giá cho sản phẩm ...</h5>
+      </div>
+      <div class="modal-body modal-rated-body">
+        <div class="modal-rated-star">
+          <% for (let i = 0; i < 5; i++) { %>
+          <span class="modal-rated-star-icon">
+            <i class="fas fa-star"></i>
+          </span>
+          <% } %>
+        </div>
+        <p class="modal-rated-error">
+          Vui lòng thả sao để đánh giá sản phẩm này
+        </p>
+        <div class="modal-rated-text">
+          <p><span>0</span>/100 kí tự</p>
+          <textarea
+            name=""
+            id=""
+            rows="3"
+            placeholder="Hãy để lại bình luận để đánh giá sản phẩm của chúng tôi"
+          ></textarea>
+        </div>
+      </div>
+      <div class="modal-footer modal-rated-footer">
+        <button
+          type="button"
+          class="modal-footer-cancel"
+          data-bs-dismiss="modal"
+        >
+          Hủy bỏ
+        </button>
+        <button
+          type="button"
+          class="modal-footer-post"
+          order-id="<%= detailOrder._id %>"
+        >
+          Đăng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

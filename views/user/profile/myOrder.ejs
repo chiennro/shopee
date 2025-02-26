@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đơn hàng cả tôi</title>
+    <link
+      rel="shortcut icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/public/css/base.css" />
+    <link rel="stylesheet" href="/public/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <%- include('../../components/header') %>
+    <main class="main">
+      <div class="content">
+        <%- include('./general') %>
+        <div class="content-info">
+          <h3>Đơn hàng của tôi</h3>
+          <%- include('../../components/loading') %>
+          <div class="content-info-container" id="loading">
+            <% if (listOrder.length > 0) { %>
+            <div class="content-order">
+              <% listOrder.map(order => { %>
+              <div class="content-order-item">
+                <a
+                  href="/profile/order/<%= order._id %>"
+                  class="content-order-link"
+                >
+                  <div class="content-order-item-title">
+                    <h5><%= order.name %></h5>
+                    <div class="content-order-item-status">
+                      <% if (order.status == 'cancel') { %>
+                      <p>Đã hủy</p>
+                      <img
+                        src="/public/icon/cancel.png"
+                        alt=""
+                        title="Đã hủy"
+                      />
+                      <% } else if (order.status == 'done') { %>
+                      <p>Giao thành công</p>
+                      <img
+                        src="/public/icon/checked.png"
+                        alt=""
+                        title="Thành công"
+                      />
+                      <% } else { %>
+                      <p>Đang giao</p>
+                      <img
+                        src="/public/icon/pending.png"
+                        alt=""
+                        title="Đang giao"
+                      />
+                      <% } %>
+                    </div>
+                  </div>
+                  <p><%= order.address %></p>
+                  <% if (order.type == 'NHÀ RIÊNG') { %>
+                  <div class="content-order-item-address home">
+                    <i class="fas fa-home"></i>
+                    nhà riêng
+                  </div>
+                  <% } else { %>
+                  <div class="content-order-item-address working">
+                    <i class="fas fa-briefcase"></i>
+                    văn phòng
+                  </div>
+                  <% } %>
+                  <div class="content-order-item-qty">
+                    <p><%= order.total.toLocaleString() %> ₫</p>
+                    <p><%= order.createdAt.toLocaleDateString() %></p>
+                  </div>
+                </a>
+              </div>
+              <% }) %>
+            </div>
+            <% } else { %>
+            <div class="order-empty">
+              <img src="/public/icon/no-task.png" alt="" />
+              <h5>Bạn chưa có đơn hàng nào</h5>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../components/footer') %>
+  </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/index.js"></script>
+  <script src="/public/js/profile.js"></script>
+</html>

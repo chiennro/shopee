@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LIST PRODUCT LAZADA</title>
+    <link
+      rel="icon"
+      href="/public/icon/lazada-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/public/css/base.css">
+    <link rel="stylesheet" href="/public/css/admin/category.css" />
+    <link rel="stylesheet" href="/public/css/admin/listproduct.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <%- include('./header.ejs') %> <br />
+    <div class="bang">
+      <form enctype="multipart/form-data">
+        <h4>Thêm sản phẩm <i class="fa-solid fa-heart-circle-plus"></i></h4>
+        <input
+          type="file"
+          id="clickimg"
+          name="illustration"
+          style="display: none"
+          multiple
+        />
+        <img
+          src="/public/icon/add.png"
+          alt=""
+          id="change"
+          onclick="importimg()"
+        />
+        <br />
+      </form>
+      <div class="color-qty">
+        <input type="text" placeholder="Màu sắc" id="color" />
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          placeholder="Số lượng"
+        />
+      </div>
+      <div class="select-list">
+        <button class="select-item col-6" id="add-size">
+          <i class="fas fa-plus"></i>
+          Thêm kích thước
+        </button>
+      </div>
+      <button onclick="addDetail()" id="add">ADD</button><br />
+    </div>
+    <div class="button"><%- include('./product.ejs') %></div>
+
+    <div class="chuyen-trang"
+      <%= total === 0 ?  'style=display:none' : '' %>
+    >
+      <button class="back" onclick="back('<%= total %>')"><<</button>
+      <% for(let i = 0 ; i < total ; i ++){%>
+      <button
+        class="Btn"
+        value="<%= i + 1 %>"
+        onclick="but('<%= i + 1 %>', '<%= total %>')"
+      >
+        <%= i + 1 %>
+      </button>
+      <%}%>
+      <button class="next" onclick="next('<%= total %>')">>></button>
+    </div>
+  </body>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">UpDate Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="body-update">
+          <form enctype="multipart/form-data" id="form">
+            <input
+              type="file"
+              id="listimgid"
+              name="listimgid"
+              style="display: none"
+              multiple
+            />
+            <img
+              src="/public/upload/add.jpg"
+              alt=""
+              id="changeIllustration"
+              class="imgthumbnail"
+              onclick="importa()"
+            />
+            <br />
+            <div class="update-color">
+              <input
+                type="text"
+                placeholder="Color"
+                id="colorid"
+                name="colorid"
+              />
+              <input type="number" id="quantityid" name="quantityid" />
+            </div>
+            
+          </form>
+        </div>
+        <div class="modal-footer" id="footer-update">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            id="Close"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            onclick="update()"
+            id="update-day"
+          >
+            UpDate Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Bạn muốn xoá dữ liệu này?
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="body-yes-no">
+          <button type="button" data-bs-dismiss="modal" class="no" id="yes-no">
+            NO
+          </button>
+          <button onclick="yes()" id="yes-no">YES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="/public/js/admin/listproduct.js"></script>
+</html>

@@ -1,0 +1,128 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+#headeruser {
+  border-bottom: #0033a0 solid 5px;
+}
+.user {
+  width: 1000px;
+  height: 700px;
+  margin: auto;
+}
+.nguoi {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  object-fit: cover;
+  object-position: center;
+  border-bottom: 1px solid orange;
+  padding: 2px;
+}
+.left,
+.right {
+  display: flex;
+}
+.imgthumbnail {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+span {
+  font-weight: 800;
+  color: #0033a0;
+}
+.nguoi {
+  margin: 20px;
+}
+.nguoidung {
+  margin: 10px;
+  width: 200px;
+}
+.nguoidungrole {
+  width: 100px;
+  text-align: start;
+}
+.nguoidungemail {
+  display: flex;
+  align-items: center;
+  width: 300px;
+}
+span {
+  margin-right: 5px;
+}
+.back,
+.next {
+  border: none;
+  color: #0033a0;
+  background: white;
+  font-size: 20px;
+  font-weight: 1000;
+  margin: 5px;
+}
+
+.Btn {
+  border: none;
+  color: #0033a0;
+  background: white;
+  border-bottom: 2px solid orange;
+  margin: 5px;
+  font-size: 20px;
+  font-weight: 1000;
+  border-radius: 15px;
+}
+.edit {
+  border-radius: 15px;
+  opacity: 0.8;
+}
+.edit:hover {
+  opacity: 5;
+}
+.trang {
+  display: flex;
+  width: 300px;
+  margin: auto;
+  position: relative;
+  bottom: -30px;
+}
+#hop {
+  border-radius: 20px;
+}
+.h5headear {
+  color: orange;
+  font-size: 30px;
+  font-weight: 800;
+  position: relative;
+  left: 90px;
+}
+#anhday {
+  margin: 5px;
+}
+.nameday {
+  width: 220px;
+}
+.roleday {
+  width: 100px;
+}
+.modal-header {
+  border-bottom: 1px solid orange;
+}
+.modal-footer {
+  display: flex;
+  justify-content: space-between !important;
+}
+#changee {
+  border: none;
+  background: orange;
+  border-radius: 15px;
+  opacity: 0.7;
+}
+#close {
+  border: none;
+  background: rgb(255, 0, 0);
+  border-radius: 15px;
+  opacity: 0.7;
+}
+#changee,
+#close:hover {
+  opacity: 5;
+}
